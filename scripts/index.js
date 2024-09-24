@@ -36,6 +36,8 @@ window.onload = (event) => {
             return table;
         });
         render();
+
+        return tables;
     }
 
     const deleteTaskAction = (task) => (event) => {
@@ -45,6 +47,8 @@ window.onload = (event) => {
             return table;
         });
         render();
+
+        return tables;
     }
 
     const createTask = (task) => {
@@ -113,9 +117,36 @@ window.onload = (event) => {
         tables.forEach(table => {
             listTablesElement.appendChild(createTable(table));
         });
+        
+        return listTablesElement;
+    }
+
+    const createForm = () => {
+        let formElement = document.getElementById('form');
+
+        let inputWrappedElement = document.createElement('div');
+        inputWrappedElement.classList.add('col-8');
+
+        let inputElement = document.createElement('input');
+        inputElement.classList.add('form-control');
+        inputElement.setAttribute('placeholder', 'Name New Todo');
+
+        let buttonElement = document.createElement('input');
+        buttonElement.classList.add('btn', 'btn-primary', 'col-4');
+        buttonElement.setAttribute('type', 'submit');
+        buttonElement.setAttribute('value', 'Create');
+
+        inputWrappedElement.appendChild(inputElement);
+        formElement.appendChild(inputWrappedElement);
+        formElement.appendChild(buttonElement);
+
+        return formElement;
     }
     
-    const render = () => createTables(tables);
+    const render = () => {
+        createForm();
+        createTables(tables);
+    };
 
     render();
 };
