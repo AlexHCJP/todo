@@ -121,8 +121,21 @@ window.onload = (event) => {
         return listTablesElement;
     }
 
+    const createTaskAction =  (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+
+        const title = formData.get('title');
+        const id = Date.now();
+        tables[0].tasks.push({ id, title });
+        render();
+    }
+
     const createForm = () => {
         let formElement = document.getElementById('form');
+        formElement.innerHTML = '';
+        formElement.removeEventListener('submit', createTaskAction)
+        formElement.addEventListener('submit', createTaskAction)
 
         let inputWrappedElement = document.createElement('div');
         inputWrappedElement.classList.add('col-8');
@@ -130,11 +143,13 @@ window.onload = (event) => {
         let inputElement = document.createElement('input');
         inputElement.classList.add('form-control');
         inputElement.setAttribute('placeholder', 'Name New Todo');
+        inputElement.setAttribute('name', 'title');
 
         let buttonElement = document.createElement('input');
         buttonElement.classList.add('btn', 'btn-primary', 'col-4');
         buttonElement.setAttribute('type', 'submit');
         buttonElement.setAttribute('value', 'Create');
+        
 
         inputWrappedElement.appendChild(inputElement);
         formElement.appendChild(inputWrappedElement);
