@@ -1,0 +1,14 @@
+ol, ul {
+    list-style-type: none;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+li {
+    padding: 0 !important;
+}
+.row>* {
+    width: max-content !important;
+}
+body {
+    overflow: hidden;
+}
